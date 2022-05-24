@@ -93,6 +93,28 @@ class _HomePageState extends State<HomePage> {
                 precoAtual: 3749,
                 numParcelas: 12
             ),
+
+            buildCardPacoteTuristico(
+                imagem: 'https://media.tacdn.com/media/attractions-splice-spp-674x446/07/7e/a6/36.jpg',
+                titulo: 'Porto Real Resort',
+                transporte: 'Angra dos Reis',
+                quantDiaria: 6,
+                quantPessoas: 2,
+                precoAntigo: 4589,
+                precoAtual: 2372,
+                numParcelas: 12
+            ),
+
+            buildCardPacoteTuristico(
+                imagem: 'https://media-cdn.tripadvisor.com/media/photo-s/1d/3b/97/93/buzios-beach-club.jpg',
+                titulo: 'Búzios Beach Resort',
+                transporte: 'Pensão completa + apresentações',
+                quantDiaria: 3,
+                quantPessoas: 2,
+                precoAntigo: 1175,
+                precoAtual: 979,
+                numParcelas: 12
+            ),
           ],
         ),
       ),
@@ -207,4 +229,5 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
+
 
