@@ -28,7 +28,10 @@ class _HomePageState extends State<HomePage> {
         child: ListView(
           children: [
             Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(16),
                 color: Colors.purple,
+              ),
                 padding: EdgeInsets.all(16),
                 child: Row(
                   children: [
@@ -74,99 +77,134 @@ class _HomePageState extends State<HomePage> {
                       fallbackWidth: 100,
                       color: Colors.white,
                     ),
+
                   ],
                 )
             ),
-            SizedBox(height: 16),
-            Card(
-              child: Column(
-                children: [
-                  Placeholder(fallbackHeight: 150),
-                  Padding(
-                      padding: EdgeInsets.all(16.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Pacote Cancún  2021',
-                            style: TextStyle(
-                              fontSize: 21,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          SizedBox(height: 8),
-                          Text('Aéreo + Hotel All Inclusive'),
-                          SizedBox(height: 8),
-                          Row(
-                            children: [
-                              Icon(
-                                Icons.wb_sunny_outlined,
-                                color: Colors.grey[700],
-                              ),
-                              Text(
-                                '5 Diárias',
-                                style: TextStyle(
-                                  color: Colors.grey[700],
-                                ),
-                              ),
-                              SizedBox(width: 4),
-                              Icon(
-                                Icons.person_outline,
-                                color: Colors.grey[700],
-                              ),
-                              Text(
-                                '1 pessoa',
-                                style: TextStyle(
-                                  color: Colors.grey[700],
-                                ),
-                              ),
-                            ],
-                          ),
-                          SizedBox(height: 8),
-                          Row(
-                            children: [
-                              Text('A partir de'),
-                              SizedBox(width: 2),
-                              Text(
-                                'R\$6.816',
-                                style: TextStyle(
-                                  decoration: TextDecoration.lineThrough,
-                                ),
-                              ),
-                            ],
-                          ),
-                          SizedBox(height: 8),
-                          Row(
-                            children: [
-                              Text(
-                                'R\$3.749',
-                                style: TextStyle(
-                                  fontSize: 28,
-                                  fontWeight: FontWeight.bold,
-                                  color: Color(0xFFFD6C00),
-                                ),
-                              ),
-                              SizedBox(width: 8.0),
-                              Text('Taxa grátis em até 12x'),
-                            ],
-                          ),
-                          SizedBox(height: 8),
-                          Text(
-                            'Cancelamento Grátis!',
-                            style: TextStyle(
-                              color: Colors.green[700]
-                            ),
-                          ),
-                        ],
-                      ),
-
-                  ),
-                ],
-              ),
-            )
+            const SizedBox(height: 16),
+            
+            buildCardPacoteTuristico(
+                imagem: 'https://viagemeturismo.abril.com.br/wp-content/uploads/2016/12/cancun11.jpg?quality=70&strip=info&w=462?quality=70&strip=info&w=636',
+                titulo: 'Pacote Cancún 2021',
+                transporte: 'Aéreo - Hotel All Inclusive',
+                quantDiaria: 5,
+                quantPessoas: 1,
+                precoAntigo: 6816,
+                precoAtual: 3749,
+                numParcelas: 12
+            ),
           ],
         ),
       ),
     );
   }
+  
+  buildCardPacoteTuristico({
+    required String imagem,
+    required String titulo,
+    required String transporte,
+    required int quantDiaria,
+    required int quantPessoas,
+    required double precoAntigo,
+    required double precoAtual,
+    required int numParcelas,
+  }){
+    return Card(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(8),
+      ),
+      child: Column(
+        children: [
+          ClipRRect(
+            borderRadius: const BorderRadius.vertical(top: Radius.circular(8)),
+            child: Image.network(imagem),
+          ),
+          Padding(
+            padding: EdgeInsets.all(16.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  titulo,
+                  style: TextStyle(
+                    fontSize: 21,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(height: 8),
+                Text(
+                  transporte,
+                  style: TextStyle(color: Colors.grey[700]),
+                ),
+                const SizedBox(height: 8),
+                Row(
+                  children: [
+                    Icon(
+                      Icons.wb_sunny_outlined,
+                      color: Colors.grey[700],
+                    ),
+                    Text(
+                      '$quantDiaria Diárias',
+                      style: TextStyle(
+                        color: Colors.grey[700],
+                      ),
+                    ),
+                    const SizedBox(width: 4),
+                    Icon(
+                      Icons.person_outline,
+                      color: Colors.grey[700],
+                    ),
+                    Text(
+                      '$quantPessoas pessoa',
+                      style: TextStyle(
+                        color: Colors.grey[700],
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 8),
+                Row(
+                  children: [
+                    Text('A partir de'),
+                    SizedBox(width: 2),
+                    Text(
+                      'R\$ $precoAntigo',
+                      style: TextStyle(
+                        decoration: TextDecoration.lineThrough,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 8),
+                Row(
+                  children:  [
+                    Text(
+                      'R\$$precoAtual',
+                      style: TextStyle(
+                        fontSize: 28,
+                        fontWeight: FontWeight.bold,
+                        color: Color(0xFFFD6C00),
+                      ),
+                    ),
+                    const SizedBox(width: 8.0),
+                    Text('Taxa grátis em até ${numParcelas}x',
+                    style: TextStyle(color: Colors.grey[700]),
+                    )
+                  ],
+                ),
+                const SizedBox(height: 8),
+                Text(
+                  'Cancelamento Grátis!',
+                  style: TextStyle(
+                  color: Colors.green[700]
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
 }
+
